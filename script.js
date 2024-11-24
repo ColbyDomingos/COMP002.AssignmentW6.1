@@ -13,14 +13,25 @@
 
 window.onload = function () { //Initializes when the window of the website loads
     const savedName = localStorage.getItem("name"); //gets the saved name from what I set it as
-    const savedColor = localStorage.getItem("color"); //gets the saved color from what I set it as
+    const savedColor = localStorage.getItem("background-color"); //gets the saved color from what I set it as
 
     if (savedName){ //if there IS a saved name
-        document.getElementById("greeting").innerText = "Hello ${savedName}"; //set the greeting with the name
+        document.getElementById("greeting").innerText = "Hello " + savedName; //set the greeting with the name
         document.getElementById("name").value = savedName; //set the name to the saved name
     }
     if (savedColor){ //if there IS a saved color
         document.body.style.backgroundColor = savedColor; //set the body background to the saved color they set
-        document.getElementById("color").value = savedColor; //set the color to the saved color
+        document.getElementById("background-color").value = savedColor; //set the color to the saved color
     }
+}
+
+document.getElementById("submit").onclick = function() { // When the submit button is clicked
+    const name = document.getElementById("name").value; //get the name from the form
+    const color = document.getElementById("background-color").value; //get the background color from the form
+
+    localStorage.setItem("name", name); //set the name in local storage so it is remembered
+    localStorage.setItem("background-color", color); //set the background color in local storage so it is remembered
+
+    document.getElementById("greeting").innerText = "Hello " + name; //set the greeting with the name
+    document.body.style.backgroundColor = color; //set the body background to the color
 }
